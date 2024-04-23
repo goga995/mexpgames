@@ -15,7 +15,7 @@ public class GameRepository : IGameRepository
 
     public void AddGame(Game game)
     {
-        throw new NotImplementedException();
+        _context.Games.Add(game);
     }
 
     public void Delete(Game game)
@@ -28,9 +28,9 @@ public class GameRepository : IGameRepository
         return await _context.Games.ToListAsync();
     }
 
-    public Task<Game> GetByIdAsync(int id)
+    public async Task<Game?> GetByIdAsync(int id)
     {
-        throw new NotImplementedException();
+        return await _context.Games.FindAsync(id);
     }
 
     public void Update(Game game)
