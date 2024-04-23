@@ -4,14 +4,14 @@ namespace Domain.Game;
 
 public sealed class Game : Entity
 {
-    private Game(Guid id,
+    private Game(
                  string name,
                  string creatorName,
                  DateTime releseDate,
                  GameType gameType,
                  int rating,
-                 IEnumerable<string> imageLinks,
-                 string description) : base(id)
+                 IEnumerable<string>? imageLinks,
+                 string description) : base(Guid.NewGuid())
     {
         Name = name;
         CreatorName = creatorName;
@@ -27,20 +27,20 @@ public sealed class Game : Entity
     public DateTime ReleseDate { get; private set; }
     public GameType GameType { get; private set; }
     public int Rating { get; private set; }
-    public IEnumerable<string> ImageLinks { get; set; } = new List<string>();
+    public IEnumerable<string>? ImageLinks { get; set; }
     public string Description { get; set; } = string.Empty;
 
 
-    public static Game Crete(Guid id,
+    public static Game Create(
                              string name,
                              string creatorName,
                              DateTime releseDate,
                              GameType gameType,
                              int rating,
-                             IEnumerable<string> imageLinks,
+                             IEnumerable<string>? imageLinks,
                              string description)
     {
-        var game = new Game(id, name, creatorName, releseDate, gameType, rating, imageLinks, description);
+        var game = new Game(name, creatorName, releseDate, gameType, rating, imageLinks, description);
         //Here you can add domain event
         return game;
     }
