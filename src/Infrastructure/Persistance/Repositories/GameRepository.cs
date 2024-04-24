@@ -26,8 +26,8 @@ public class GameRepository : IGameRepository
     public async Task<List<GameResponse>> GetAllAsync()
     {
         IQueryable<Game> query = _context.Games;
-        var tmp = await query.ToListAsync();
-        var response = tmp.Select(g => new GameResponse(
+
+        var response = await query.Select(g => new GameResponse(
             g.Id,
             g.Name,
             g.CreatorName,
@@ -36,13 +36,14 @@ public class GameRepository : IGameRepository
             g.Rating,
             g.ImageLinks,
             g.Description
-        ));
-        return (List<GameResponse>)response;
+        )).ToListAsync();
+        return response;
     }
 
     public async Task<Game?> GetByIdAsync(Guid id)
     {
-        return await _context.Games.FindAsync(id);
+        var result = await _context.Games.FirstOrDefaultAsync(g => g.Id == id);
+        return result;
     }
 
     public void Update(Game game)

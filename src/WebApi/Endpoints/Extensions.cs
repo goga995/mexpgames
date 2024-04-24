@@ -29,7 +29,7 @@ public static class Extensions
             return Results.Ok(send);
         });
 
-        builder.MapGet("/game/{Guid:id}", async (Guid id, ISender sender) =>
+        builder.MapGet("/game/{id:Guid}", async (Guid id, ISender sender) =>
         {
             try
             {
