@@ -20,7 +20,7 @@ public class GameRepository : IGameRepository
 
     public void Delete(Game game)
     {
-        throw new NotImplementedException();
+        _context.Games.Remove(game);
     }
 
     public async Task<List<Game>> GetAllAsync()
@@ -35,6 +35,6 @@ public class GameRepository : IGameRepository
 
     public void Update(Game game)
     {
-        throw new NotImplementedException();
+        _context.Games.Update(game);
     }
 }
