@@ -1,4 +1,7 @@
+using Application.Data;
+using Domain.Game;
 using Infrastructure.Persistance.Data;
+using Infrastructure.Persistance.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,6 +14,12 @@ public static class DependencyInjection
     {
         services.AddDbContext<AppDbContext>(options =>
             options.UseSqlite(configuration.GetConnectionString("DefaulDbConnection")));
+
+        services.AddScoped<IUnitOfWork>(sp =>
+            sp.GetRequiredService<AppDbContext>());
+
+        services.AddScoped<IGameRepository, GameRepository>();
+
         return services;
     }
 
