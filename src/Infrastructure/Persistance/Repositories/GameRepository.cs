@@ -23,12 +23,24 @@ public class GameRepository : IGameRepository
         _context.Games.Remove(game);
     }
 
-    public async Task<List<Game>> GetAllAsync()
+    public async Task<List<GameResponse>> GetAllAsync()
     {
-        return await _context.Games.ToListAsync();
+        IQueryable<Game> query = _context.Games;
+        var tmp = await query.ToListAsync();
+        var response = tmp.Select(g => new GameResponse(
+            g.Id,
+            g.Name,
+            g.CreatorName,
+            g.ReleseDate,
+            g.GameType,
+            g.Rating,
+            g.ImageLinks,
+            g.Description
+        ));
+        return (List<GameResponse>)response;
     }
 
-    public async Task<Game?> GetByIdAsync(int id)
+    public async Task<Game?> GetByIdAsync(Guid id)
     {
         return await _context.Games.FindAsync(id);
     }
