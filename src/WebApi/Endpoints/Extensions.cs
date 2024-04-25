@@ -75,15 +75,15 @@ public static class Extensions
             return Results.NoContent();
         });
 
-        builder.MapPost("/games/scrape/{SteamId:string}", async (string SteamId, ISender sender) =>
+        builder.MapPost("/games/Scrape/", async (string SteamId, ISender sender) =>
         {
             if (string.IsNullOrEmpty(SteamId))
             {
                 return Results.BadRequest("Steam Id cant be null");
             }
+            var result = await sender.Send(new SteamScrapeCommand(SteamId));
 
-
-            return Results.Ok(await sender.Send(new SteamScrapeCommand(SteamId)));
+            return Results.Ok(result);
         });
 
     }

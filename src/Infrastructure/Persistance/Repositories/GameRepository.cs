@@ -17,7 +17,7 @@ public class GameRepository : IGameRepository
         _context = context;
     }
 
-    public HtmlNode DocumentNode => throw new NotImplementedException();
+
 
     public void AddGame(Game game)
     {
@@ -67,23 +67,22 @@ public class GameRepository : IGameRepository
 
             doc.LoadHtml(htmlAdress);
 
-            var nameElement = doc.DocumentNode.SelectSingleNode("//div[@class='apphub_AppName'");
+            var nameElement = doc.DocumentNode.SelectSingleNode("//*[@id=\"appHubAppName\"]");
             string name = nameElement.InnerText;
             if (name is null)
                 throw new ArgumentNullException();
+
             var creatorNameElement = doc.DocumentNode.SelectSingleNode("//*[@id=\"developers_list\"]/a");
             var creatorName = creatorNameElement.InnerText;
             if (creatorName is null)
                 throw new ArgumentNullException();
 
-            var imageLinksElements = doc.DocumentNode.SelectNodes("//div[@class='highlight_player_item highlight_screenshot'");
-            var imageLinks = imageLinksElements.Select(link => link.Id).ToList();
-            if (imageLinks is null)
-                throw new ArgumentNullException();
 
-            var descriptionElements = doc.DocumentNode.SelectSingleNode("//*[@id=\"game_highlights\"]/div[1]/div/div[2]");
+
+
+            var descriptionElements = doc.DocumentNode.SelectSingleNode("//*[@id=\"game_highlights\"]/div[1]/div/div[2]/text()");
             var description = descriptionElements.InnerText;
-            var game = Game.Create(name, creatorName, DateTime.UtcNow, GameType.Action, 59, imageLinks, "desc");
+            var game = Game.Create(name, creatorName, DateTime.UtcNow, GameType.Action, 59, null, description);
             return game;
 
         }
