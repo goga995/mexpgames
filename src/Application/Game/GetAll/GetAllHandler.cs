@@ -17,8 +17,6 @@ public class GetAllHandler : IRequestHandler<GetAllQuery, Result<List<GameRespon
     {
         var games = await _gameRepository.GetAllAsync();
 
-
-
         return Result.Success(games);
     }
 }

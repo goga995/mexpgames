@@ -22,6 +22,7 @@ public sealed class Game : Entity
         Description = description;
     }
 
+
     public string Name { get; private set; } = string.Empty;
     public string CreatorName { get; private set; } = string.Empty;
     public DateTime ReleseDate { get; private set; }
@@ -41,7 +42,23 @@ public sealed class Game : Entity
                              string description)
     {
         var game = new Game(name, creatorName, releseDate, gameType, rating, imageLinks, description);
-        //Here you can add domain event
+        //Here you can add domain event (Raise it)
         return game;
+    }
+    public void Update(string name,
+                             string creatorName,
+                             DateTime releseDate,
+                             GameType gameType,
+                             int rating,
+                             IEnumerable<string>? imageLinks,
+                             string description)
+    {
+        Name = name;
+        CreatorName = creatorName;
+        ReleseDate = releseDate;
+        GameType = gameType;
+        Rating = rating;
+        ImageLinks = imageLinks;
+        Description = description;
     }
 }

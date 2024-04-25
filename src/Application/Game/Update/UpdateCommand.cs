@@ -12,7 +12,7 @@ public sealed record UpdateCommand(Guid id, string name,
                  IEnumerable<string>? imageLinks,
                  string description) : IRequest<Result>;
 
-public record UpdateProductRequest(string name,
+public record UpdateGameRequest(string name,
                  string creatorName,
                  DateTime releseDate,
                  GameType gameType,

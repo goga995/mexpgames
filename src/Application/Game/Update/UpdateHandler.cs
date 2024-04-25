@@ -1,8 +1,10 @@
-using System.Runtime.CompilerServices;
+using System.Data.Common;
+using System.Reflection.Metadata.Ecma335;
 using Application.Data;
 using Domain.Game;
 using Domain.Shared;
 using MediatR;
+using Microsoft.VisualBasic;
 
 namespace Application.Game.Update;
 
@@ -26,7 +28,16 @@ public class UpdateHandler : IRequestHandler<UpdateCommand, Result>
             return Result.Failure(GameError.NotFound);
         }
 
+        game.Update(request.name,
+                    request.creatorName,
+                    request.releseDate,
+                    request.gameType,
+                    request.rating,
+                    request.imageLinks,
+                    request.description);
+
         _gameRepository.Update(game);
+        await _unitOfWork.SaveChangesAsync();
         return Result.Success();
     }
 }

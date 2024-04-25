@@ -1,7 +1,10 @@
 using Application.Game.Create;
+using Application.Game.Delete;
 using Application.Game.GetAll;
 using Application.Game.GetById;
+using Application.Game.Update;
 using MediatR;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Endpoints;
 
@@ -40,6 +43,35 @@ public static class Extensions
 
                 return Results.NotFound(e.Message);
             }
+        });
+
+        builder.MapDelete("/games/{id:Guid}", async (Guid id, ISender sender) =>
+        {
+
+            try
+            {
+                return Results.Ok(await sender.Send(new DeleteCommand(id)));
+            }
+            catch (System.Exception e)
+            {
+                return Results.BadRequest(e.Message);
+            }
+        });
+
+        builder.MapPut("/games/{id:guid}", async (Guid id, [FromBody] UpdateGameRequest request, ISender sender) =>
+        {
+            var command = new UpdateCommand(
+                id,
+                request.name,
+                request.creatorName,
+                request.releseDate,
+                request.gameType,
+                request.rating,
+                request.imageLinks,
+                request.description
+            );
+            await sender.Send(command);
+            return Results.NoContent();
         });
 
     }
