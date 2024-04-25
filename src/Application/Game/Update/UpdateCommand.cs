@@ -9,7 +9,7 @@ public sealed record UpdateCommand(Guid id, string name,
                  DateTime releseDate,
                  GameType gameType,
                  int rating,
-                 IEnumerable<string>? imageLinks,
+                 List<string>? imageLinks,
                  string description) : IRequest<Result>;
 
 public record UpdateGameRequest(string name,
@@ -17,5 +17,5 @@ public record UpdateGameRequest(string name,
                  DateTime releseDate,
                  GameType gameType,
                  int rating,
-                 IEnumerable<string>? imageLinks,
+                 List<string>? imageLinks,
                  string description);

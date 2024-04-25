@@ -1,5 +1,6 @@
 using Application.Data;
 using Domain.Game;
+using Infrastructure.Persistance;
 using Infrastructure.Persistance.Data;
 using Infrastructure.Persistance.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,7 @@ public static class DependencyInjection
             sp.GetRequiredService<AppDbContext>());
 
         services.AddScoped<IGameRepository, GameRepository>();
+
 
         return services;
     }

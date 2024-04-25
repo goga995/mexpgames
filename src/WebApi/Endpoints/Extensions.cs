@@ -2,6 +2,7 @@ using Application.Game.Create;
 using Application.Game.Delete;
 using Application.Game.GetAll;
 using Application.Game.GetById;
+using Application.Game.SteamScrape;
 using Application.Game.Update;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -72,6 +73,17 @@ public static class Extensions
             );
             await sender.Send(command);
             return Results.NoContent();
+        });
+
+        builder.MapPost("/games/scrape/{SteamId:string}", async (string SteamId, ISender sender) =>
+        {
+            if (string.IsNullOrEmpty(SteamId))
+            {
+                return Results.BadRequest("Steam Id cant be null");
+            }
+
+
+            return Results.Ok(await sender.Send(new SteamScrapeCommand(SteamId)));
         });
 
     }

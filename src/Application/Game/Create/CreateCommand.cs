@@ -9,5 +9,5 @@ public sealed record CreateCommand(string Name,
                                    DateTime ReleaseDate,
                                    GameType GameType,
                                    int Rating,
-                                   IEnumerable<string>? ImageLinks,
+                                   List<string>? ImageLinks,
                                    string Description) : IRequest<Result<Guid>>;

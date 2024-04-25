@@ -7,4 +7,5 @@ public interface IGameRepository
     void AddGame(Game game);
     void Update(Game game);
     void Delete(Game game);
+    Task<Game?> Scrape(string SteamGameID);
 }

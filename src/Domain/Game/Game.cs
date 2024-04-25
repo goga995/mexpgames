@@ -10,7 +10,7 @@ public sealed class Game : Entity
                  DateTime releseDate,
                  GameType gameType,
                  int rating,
-                 IEnumerable<string>? imageLinks,
+                 List<string>? imageLinks,
                  string description) : base(Guid.NewGuid())
     {
         Name = name;
@@ -28,7 +28,7 @@ public sealed class Game : Entity
     public DateTime ReleseDate { get; private set; }
     public GameType GameType { get; private set; }
     public int Rating { get; private set; }
-    public IEnumerable<string>? ImageLinks { get; set; }
+    public List<string>? ImageLinks { get; set; }
     public string Description { get; set; } = string.Empty;
 
 
@@ -38,7 +38,7 @@ public sealed class Game : Entity
                              DateTime releseDate,
                              GameType gameType,
                              int rating,
-                             IEnumerable<string>? imageLinks,
+                             List<string>? imageLinks,
                              string description)
     {
         var game = new Game(name, creatorName, releseDate, gameType, rating, imageLinks, description);
@@ -50,7 +50,7 @@ public sealed class Game : Entity
                              DateTime releseDate,
                              GameType gameType,
                              int rating,
-                             IEnumerable<string>? imageLinks,
+                             List<string>? imageLinks,
                              string description)
     {
         Name = name;
