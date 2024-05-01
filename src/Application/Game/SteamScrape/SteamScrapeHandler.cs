@@ -1,10 +1,11 @@
+using Application.Abstractions.Messaging;
 using Domain.Game;
 using Domain.Shared;
 using MediatR;
 
 namespace Application.Game.SteamScrape;
 
-public class SteamScrapeHandler : IRequestHandler<SteamScrapeCommand, Result<Domain.Game.Game>>
+public class SteamScrapeHandler : ICommandHanlder<SteamScrapeCommand, Domain.Game.Game>
 {
     private readonly IGameRepository _gameRepository;
 

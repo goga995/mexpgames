@@ -1,3 +1,4 @@
+using Application.Abstractions.Messaging;
 using Application.Data;
 using Domain.Game;
 using Domain.Shared;
@@ -5,7 +6,7 @@ using MediatR;
 
 namespace Application.Game.Update;
 
-public class UpdateHandler : IRequestHandler<UpdateCommand, Result>
+public class UpdateHandler : ICommandHanlder<UpdateCommand>
 {
     private readonly IGameRepository _gameRepository;
     private readonly IUnitOfWork _unitOfWork;

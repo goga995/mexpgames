@@ -1,6 +1,6 @@
+using Application.Abstractions.Messaging;
 using Domain.Game;
 using Domain.Shared;
-using MediatR;
 
 namespace Application.Game.Update;
 
@@ -10,7 +10,7 @@ public sealed record UpdateCommand(Guid id, string name,
                  GameType gameType,
                  int rating,
                  List<string>? imageLinks,
-                 string description) : IRequest<Result>;
+                 string description) : ICommand;
 
 public record UpdateGameRequest(string name,
                  string creatorName,

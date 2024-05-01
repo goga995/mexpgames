@@ -1,10 +1,11 @@
+using Application.Abstractions.Messaging;
 using Domain.Game;
 using Domain.Shared;
 using MediatR;
 
 namespace Application.Game.GetAll;
 
-public class GetAllHandler : IRequestHandler<GetAllQuery, Result<List<GameResponse>>>
+public class GetAllHandler : IQueryHandler<GetAllQuery, List<GameResponse>>
 {
     private readonly IGameRepository _gameRepository;
 

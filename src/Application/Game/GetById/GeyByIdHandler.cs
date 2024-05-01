@@ -1,10 +1,11 @@
+using Application.Abstractions.Messaging;
 using Domain.Game;
 using Domain.Shared;
 using MediatR;
 
 namespace Application.Game.GetById;
 
-public class GeyByIdHandler : IRequestHandler<GetByIdQuery, Result<GameResponse>>
+public class GeyByIdHandler : IQueryHandler<GetByIdQuery, GameResponse>
 {
     private readonly IGameRepository _gameRepository;
 

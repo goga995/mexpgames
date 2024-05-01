@@ -1,6 +1,6 @@
+using Application.Abstractions.Messaging;
 using Domain.Game;
 using Domain.Shared;
-using MediatR;
 
 namespace Application.Game.Create;
 
@@ -10,4 +10,4 @@ public sealed record CreateCommand(string Name,
                                    GameType GameType,
                                    int Rating,
                                    List<string>? ImageLinks,
-                                   string Description) : IRequest<Result<Guid>>;
+                                   string Description) : ICommand<Guid>;

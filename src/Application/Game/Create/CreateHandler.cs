@@ -1,3 +1,4 @@
+using Application.Abstractions.Messaging;
 using Application.Data;
 using Domain.Game;
 using Domain.Shared;
@@ -5,7 +6,7 @@ using MediatR;
 
 namespace Application.Game.Create;
 
-internal sealed class CreateHandler : IRequestHandler<CreateCommand, Result<Guid>>
+internal sealed class CreateHandler : ICommandHanlder<CreateCommand, Guid>
 {
     private readonly IGameRepository _gameRepository;
     private readonly IUnitOfWork _unitOfWork;
