@@ -3,6 +3,7 @@ using HtmlAgilityPack;
 using Infrastructure.Persistance.Data;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace Infrastructure.Persistance.Repositories;
 
 public class GameRepository : IGameRepository

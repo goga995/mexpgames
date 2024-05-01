@@ -9,10 +9,10 @@ public abstract class Entity
     }
 
     public Guid Id { get; init; }
-    public List<IDomainEvent> DomainEvents => _domainEvents.ToList();
+    public ICollection<IDomainEvent> DomainEvents => _domainEvents;
 
     protected void Raise(IDomainEvent domainEvent)
     {
-        DomainEvents.Add(domainEvent);
+        _domainEvents.Add(domainEvent);
     }
 }

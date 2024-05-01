@@ -1,5 +1,7 @@
 using Application.Data;
 using Domain.Game;
+using Domain.Shared;
+using Infrastructure.EmailService;
 using Infrastructure.Persistance.Data;
 using Infrastructure.Persistance.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -20,9 +22,11 @@ public static class DependencyInjection
             sp.GetRequiredService<AppDbContext>());
 
         // services.AddScoped<IGameRepository, GameRepository>();
-        //Ovo je problem nesto
+        //Decorator Pattern
         services.AddKeyedScoped<IGameRepository, GameRepository>("og");
         services.AddScoped<IGameRepository, CachedMemberRepository>();
+
+        services.AddScoped<IEmailService, EmailServicee>();
 
         return services;
     }

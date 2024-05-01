@@ -28,6 +28,7 @@ internal sealed class CreateHandler : IRequestHandler<CreateCommand, Result<Guid
             request.Description
         );
         _gameRepository.AddGame(game);
+
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return Result.Success(game.Id);

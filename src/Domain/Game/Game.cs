@@ -43,6 +43,8 @@ public sealed class Game : Entity
     {
         var game = new Game(name, creatorName, releseDate, gameType, rating, imageLinks, description);
         //Here you can add domain event (Raise it)
+        game.Raise(new GameCreatedDomainEvent(Guid.NewGuid(), game.Id));
+
         return game;
     }
     public void Update(string name,
