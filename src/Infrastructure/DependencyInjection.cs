@@ -1,10 +1,13 @@
+using Application.Abstractions.Caching;
 using Application.Data;
 using Domain.Game;
 using Domain.Shared;
+using Infrastructure.Caching;
 using Infrastructure.EmailService;
 using Infrastructure.Persistance.Data;
 using Infrastructure.Persistance.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -27,6 +30,9 @@ public static class DependencyInjection
         services.AddScoped<IGameRepository, CachedMemberRepository>();
 
         services.AddScoped<IEmailService, EmailServicee>();
+
+        //Zato sto je kes samo jedna instanca je potrebna
+        services.AddSingleton<ICacheService, CachingService>();
 
         return services;
     }

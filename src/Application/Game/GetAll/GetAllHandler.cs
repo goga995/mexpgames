@@ -1,7 +1,6 @@
 using Application.Abstractions.Messaging;
 using Domain.Game;
 using Domain.Shared;
-using MediatR;
 
 namespace Application.Game.GetAll;
 
@@ -16,6 +15,7 @@ public class GetAllHandler : IQueryHandler<GetAllQuery, List<GameResponse>>
 
     public async Task<Result<List<GameResponse>>> Handle(GetAllQuery request, CancellationToken cancellationToken)
     {
+
         var games = await _gameRepository.GetAllAsync();
 
         return Result.Success(games);

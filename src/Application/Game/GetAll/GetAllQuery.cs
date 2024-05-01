@@ -1,8 +1,11 @@
-using Application.Abstractions.Messaging;
+using Application.Abstractions.Caching;
 using Domain.Game;
-using Domain.Shared;
-using MediatR;
 
 namespace Application.Game.GetAll;
 
-public sealed record GetAllQuery() : IQuery<List<GameResponse>>;
+public sealed record GetAllQuery() : ICachedQuery<List<GameResponse>>
+{
+    public string Key => $"all-games-Default";
+
+    public TimeSpan? Expiration => null;
+}
